@@ -21,6 +21,18 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('結果発表'),
+        leadingWidth: 85,  //leadingWidthを設定する
+        leading: TextButton(
+          child: Text(
+            '戻る',
+            style: TextStyle(
+              color: Colors.white,  //文字の色を白にする
+              fontWeight: FontWeight.bold,  //文字を太字する
+              fontSize: 12.0,  //文字のサイズを調整する
+            ),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

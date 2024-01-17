@@ -33,23 +33,15 @@ class _QuizPageState extends State<QuizPage> {
 
   Future<void> _loadQuestions() async {
     try {
-      // Pass both the file name and maxQuestions to fetchQuestions
-      List<Question> allQuestions = await ApiService.fetchQuestions(widget.quizFileName, widget.maxQuestions);
-
-      // Shuffle all questions
-      allQuestions.shuffle();
-
-      // Take only the first 10 questions
-      questions = allQuestions.take(widget.maxQuestions).toList();
-
+      questions = await ApiService.fetchQuestions(widget.quizFileName, widget.maxQuestions);
       setState(() {
-        print('Shuffled and Limited Questions: $questions');
+        questions.shuffle();
+        print('Shuffled Questions: $questions');
       });
     } catch (e) {
       print('質問の読み込みエラー: $e');
     }
   }
-
 
 
   void checkAnswer(bool userAnswer) {
@@ -142,6 +134,18 @@ class _QuizPageState extends State<QuizPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('方言〇☓ゲーム'),
+        leadingWidth: 85,  //leadingWidthを設定する
+        leading: TextButton(
+          child: Text(
+            '戻る',
+            style: TextStyle(
+              color: Colors.white,  //文字の色を白にする
+              fontWeight: FontWeight.bold,  //文字を太字する
+              fontSize: 12.0,  //文字のサイズを調整する
+            ),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
