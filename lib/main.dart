@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'クイズ&単語帳',
+      title: 'みやぎ方言アプリ',
       debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
